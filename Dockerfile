@@ -1,17 +1,18 @@
-# PHP + Apache
 FROM php:8.1-apache
 
-# Install extension yang dibutuhkan
+# Matikan semua MPM dulu (biar bersih)
+RUN a2dismod mpm_event mpm_worker || true
+
+# Aktifkan MPM prefork (WAJIB untuk PHP mod_php)
+RUN a2enmod mpm_prefork rewrite
+
+# Install ekstensi PHP
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Aktifkan mod_rewrite
-RUN a2enmod rewrite
-
-# Copy semua file project ke Apache
+# Copy project ke Apache
 COPY . /var/www/html/
 
-# Set permission
+# Permission
 RUN chown -R www-data:www-data /var/www/html
 
-# Expose port 80
 EXPOSE 80
