@@ -32,19 +32,13 @@ if (isset($_GET['timeout'])) {
 <body>
     <div class="login-container">
         <div class="login-card">
-            <div class="login-header">
-                <img src="../assets/img/logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
-                <h2>Sistem Manajemen Inventory</h2>
-                <p>Silakan login untuk melanjutkan</p>
-            </div>
-
-            <?php if ($error_message): ?>
-                <div class="alert <?php echo (isset($_GET['success']) ? 'alert-success' : 'alert-danger'); ?> alert-dismissible fade show" role="alert">
-                    <i class="bi <?php echo (isset($_GET['success']) ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill'); ?> me-2"></i>
-                    <?php echo htmlspecialchars($error_message); ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <div class="login-footer">
+                <div class="text-center">
+                    <small class="text-muted">
+                        Belum punya akun? <a href="register.php" class="text-primary">Daftar di sini</a>
+                    </small>
                 </div>
-            <?php endif; ?>
+            </div>
 
             <form id="loginForm" action="login_process.php" method="POST" novalidate>
                 <div class="mb-3">
