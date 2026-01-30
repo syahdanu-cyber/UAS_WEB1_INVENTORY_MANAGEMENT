@@ -1,18 +1,18 @@
 FROM php:8.1-apache
 
-# Matikan semua MPM dulu (biar bersih)
-RUN a2dismod mpm_event mpm_worker || true
+# Hapus paksa file load mpm_event dan mpm_worker jika ada
+RUN rm -f /etc/apache2/mods-enabled/mpm_event.load /etc/apache2/mods-enabled/mpm_worker.load
 
-# Aktifkan MPM prefork (WAJIB untuk PHP mod_php)
+# Aktifkan mpm_prefork dan rewrite secara eksplisit
 RUN a2enmod mpm_prefork rewrite
 
-# Install ekstensi PHP
+# Install ekstensi PHP MySQL
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Copy project ke Apache
+# Copy project
 COPY . /var/www/html/
 
-# Permission
+# Set permission agar Apache bisa baca file
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
