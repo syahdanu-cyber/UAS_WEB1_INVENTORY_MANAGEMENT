@@ -457,5 +457,5 @@ Untuk pertanyaan atau issue:
 - CRUD lengkap
 
 ---
-
+AKSES WEBSITENYA : http://danualghifary.my.id/auth/login.php
 **Terima kasih telah menggunakan Sistem Manajemen Inventory!** 🎉
